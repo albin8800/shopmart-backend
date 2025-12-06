@@ -1,7 +1,7 @@
 import User from "../models/User";
 import jwt from "jsonwebtoken";
 import { sendOtpEmail } from "../utils/sendOtp";
-import { use } from "react";
+
 
 
 export const sendOtp = async (req, res) => {
@@ -16,8 +16,8 @@ export const sendOtp = async (req, res) => {
 
          if(!user) {
             user = await User.create({
-                phone: !input.includes("@") ? input: null;
-                email: input.includes("@") ? input: null;
+                phone: !input.includes("@") ? input: null,
+                email: input.includes("@") ? input: null
             })
          }
 
