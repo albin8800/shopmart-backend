@@ -1,16 +1,18 @@
-import User from "../models/User";
+import User from "../models/User.js";
 import jwt from "jsonwebtoken";
-import { sendOtpEmail } from "../utils/sendOtp";
+import { sendOtpEmail } from "../utils/sendOtp.js";
 
 
 
 export const sendOtp = async (req, res) => {
     try {
         const { input } = req.body;
+       
 
         if(!input) return res.status(400).json({ message: "Phone or Email Required" });
 
         const otp = Math.floor(100000 + Math.random() * 900000).toString();
+         
 
         let user = await User.findOne({ $or: [{ phone: input }, { email: input }]})
 
@@ -32,6 +34,7 @@ export const sendOtp = async (req, res) => {
          }
          res.json({ success: true, message: "OTP Send"});
     } catch (error) {
+         console.log("❌ OTP SEND ERROR:", error);
         res.status(500).json({ message: error.message});
     }
 };

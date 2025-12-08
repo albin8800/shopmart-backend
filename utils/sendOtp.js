@@ -1,6 +1,6 @@
 import niodemailer from "nodemailer";
 
-export const sendOtpEmail = async (sendOtpEmail, otp) => {
+export const sendOtpEmail = async (email, otp) => {
     const transporter = niodemailer.createTransport({
         service: "gmail",
         auth: {
